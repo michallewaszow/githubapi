@@ -26,16 +26,17 @@ public class GitHubReposController {
 
     @GetMapping(path = "/repositories", produces = "application/json")
     public List<GithubRepository> showUserRepos(@RequestParam("username") final String userName,
-                                                @RequestParam(value = "show_active", required = false)
-                                              final boolean showActive,
-                                                @RequestParam(value = "sort", required = false) final String sort) {
-        List<GithubRepository> userRepositories = requestSender.getUserRepositories(userName);
+                                                @RequestParam(value = "showActive", required = false)
+                                                final boolean showActive,
+                                                @RequestParam(value = "sortByUsername", required = false)
+                                                final String sortingMethod) {
+        List<GithubRepository> userRepositories = requestSender.getUserGitHubRepositories(userName).getBody();
         userRepositories.forEach(RepositoryActivityEvaluator::evaluateActivity);
         if (showActive) {
             userRepositories = RepositoryFilterer.filterRepositoryByActivity(userRepositories);
         }
-        if (StringUtils.isNotBlank(sort)) {
-            userRepositories = RepositorySorter.sortRepositories(sort, userRepositories);
+        if (StringUtils.isNotBlank(sortingMethod)) {
+            userRepositories = RepositorySorter.sortRepositories(sortingMethod, userRepositories);
         }
         return userRepositories;
     }

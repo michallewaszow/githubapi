@@ -1,6 +1,7 @@
 package com.lewaszow.githubrepos.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.ToString;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class UserEntity {
 
     @Id

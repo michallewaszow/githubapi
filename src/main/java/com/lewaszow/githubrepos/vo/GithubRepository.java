@@ -1,12 +1,14 @@
 package com.lewaszow.githubrepos.vo;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
 
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class GithubRepository {
 
     @Getter

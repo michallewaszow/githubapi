@@ -13,15 +13,12 @@ import java.util.List;
 @Service
 public class RequestSender {
 
-    public List<GithubRepository> getUserRepositories(final String userName) {
+    public ResponseEntity<List<GithubRepository>> getUserGitHubRepositories(final String userName) {
         final RestTemplate restTemplate = new RestTemplate();
-        final ResponseEntity<List<GithubRepository>> repositories = restTemplate.exchange("https://api.github.com/users/"
-                                                                                          + userName
-                                                                                          + "/repos",
-                                                                                          HttpMethod.GET,
-                                                                                          null,
-                                                                                          new ParameterizedTypeReference<List<GithubRepository>>() {
-                                                                            });
-        return repositories.getBody();
+        return restTemplate.exchange("https://api.github.com/users/" + userName + "/repos",
+                                     HttpMethod.GET,
+                                     null,
+                                     new ParameterizedTypeReference<List<GithubRepository>>() {
+                                     });
     }
 }
