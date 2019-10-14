@@ -1,15 +1,15 @@
 package com.lewaszow.githubrepos.util;
 
-import com.lewaszow.githubrepos.vo.UserRepository;
+import com.lewaszow.githubrepos.vo.GithubRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RepositoryFilterer {
 
-    public static List<UserRepository> filterRepositoryByActivity(final List<UserRepository> repositories) {
+    public static List<GithubRepository> filterRepositoryByActivity(final List<GithubRepository> repositories) {
         return repositories.stream()
-                           .filter(UserRepository::isRecentlyUpdated)
+                           .filter(GithubRepository::isRecentlyUpdated)
                            .collect(Collectors.toList());
     }
 }

@@ -10,7 +10,7 @@ import com.lewaszow.githubrepos.service.RequestSender;
 import com.lewaszow.githubrepos.util.RepositoryActivityEvaluator;
 import com.lewaszow.githubrepos.util.RepositoryFilterer;
 import com.lewaszow.githubrepos.util.RepositorySorter;
-import com.lewaszow.githubrepos.vo.UserRepository;
+import com.lewaszow.githubrepos.vo.GithubRepository;
 
 import java.util.List;
 
@@ -25,11 +25,11 @@ public class GitHubReposController {
     }
 
     @GetMapping(path = "/repositories", produces = "application/json")
-    public List<UserRepository> showUserRepos(@RequestParam("username") final String userName,
-                                              @RequestParam(value = "show_active", required = false)
+    public List<GithubRepository> showUserRepos(@RequestParam("username") final String userName,
+                                                @RequestParam(value = "show_active", required = false)
                                               final boolean showActive,
-                                              @RequestParam(value = "sort", required = false) final String sort) {
-        List<UserRepository> userRepositories = requestSender.getUserRepositories(userName);
+                                                @RequestParam(value = "sort", required = false) final String sort) {
+        List<GithubRepository> userRepositories = requestSender.getUserRepositories(userName);
         userRepositories.forEach(RepositoryActivityEvaluator::evaluateActivity);
         if (showActive) {
             userRepositories = RepositoryFilterer.filterRepositoryByActivity(userRepositories);

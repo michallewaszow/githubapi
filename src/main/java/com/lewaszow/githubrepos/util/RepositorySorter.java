@@ -2,7 +2,7 @@ package com.lewaszow.githubrepos.util;
 
 import lombok.extern.slf4j.Slf4j;
 
-import com.lewaszow.githubrepos.vo.UserRepository;
+import com.lewaszow.githubrepos.vo.GithubRepository;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public class RepositorySorter {
     private static final String ASCENDING = "ascending";
     private static final String DESCENDING = "descending";
 
-    public static List<UserRepository> sortRepositories(final String sortingMethod, final List<UserRepository> userRepositories) {
+    public static List<GithubRepository> sortRepositories(final String sortingMethod, final List<GithubRepository> userRepositories) {
         if (ASCENDING.contains(sortingMethod)) {
             return sortAscending(userRepositories);
         } else if (DESCENDING.contains(sortingMethod)) {
@@ -22,13 +22,13 @@ public class RepositorySorter {
         return userRepositories;
     }
 
-    private static List<UserRepository> sortAscending(final List<UserRepository> repositories) {
+    private static List<GithubRepository> sortAscending(final List<GithubRepository> repositories) {
         repositories.sort((r1, r2) -> r1.getUserName()
                                         .compareToIgnoreCase(r2.getUserName()));
         return repositories;
     }
 
-    private static List<UserRepository> sortDescending(final List<UserRepository> repositories) {
+    private static List<GithubRepository> sortDescending(final List<GithubRepository> repositories) {
         repositories.sort((r1, r2) -> r2.getUserName()
                                         .compareToIgnoreCase(r1.getUserName()));
         return repositories;

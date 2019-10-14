@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
 
-public class UserRepository {
+public class GithubRepository {
 
     @Getter
     @JsonProperty("name")
